@@ -1,0 +1,10 @@
+{
+  "name": "skill-swap-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "In-memory Express API for the Skill Swap demo",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "dev": "node --watch server.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "cors": "^2.8.5", "express": "^4.21.2" }
+}

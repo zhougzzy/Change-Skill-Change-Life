@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkillSwap 技能交换平台" />
+  <title>SkillSwap · 交换你会的，获得你想学的</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#discover" data-view="discover" aria-label="SkillSwap 首页">
+        <span class="brand-mark">↗</span>
+        <span>Skill<span>Swap</span></span>
+      </a>
+      <nav class="main-nav" aria-label="主导航">
+        <button class="nav-link active" data-view="discover">发现技能</button>
+        <button class="nav-link" data-view="exchanges">我的交换 <span class="nav-count">2</span></button>
+        <button class="nav-link" data-view="profile">个人资料</button>
+      </nav>
+      <button class="profile-chip" data-view="profile" aria-label="打开个人资料">
+        <span class="avatar avatar-mini">林</span>
+        <span class="profile-chip-copy"><b>林默</b><small>设计 × 故事</small></span>
+        <span class="chevron">⌄</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="view active" id="discover-view">
+        <div class="hero-row">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-dot"></span> COMMUNITY SKILLS MARKET</p>
+            <h1>交换你会的，<br><em>获得你想学的。</em></h1>
+            <p class="hero-subtitle">SkillSwap 让每个人都能用自己的经验，换一门真正感兴趣的新技能。</p>
+          </div>
+          <div class="hero-note">
+            <span class="note-index">01 / 03</span>
+            <p>“最好的学习，不是购买课程，而是和一个愿意分享的人一起完成一件事。”</p>
+            <span class="note-author">— SkillSwap 社区宣言</span>
+          </div>
+        </div>
+
+        <div class="discovery-tools">
+          <div class="search-wrap"><span>⌕</span><input id="search-input" type="search" placeholder="搜索你想学的技能，例如：摄影、写作、Python" /></div>
+          <div class="filter-group" id="filter-group">
+            <button class="filter-btn active" data-category="全部">全部</button>
+            <button class="filter-btn" data-category="创意设计">创意设计</button>
+            <button class="filter-btn" data-category="技术开发">技术开发</button>
+            <button class="filter-btn" data-category="语言表达">语言表达</button>
+            <button class="filter-btn" data-category="生活方式">生活方式</button>
+          </div>
+          <button class="outline-btn" id="publish-btn"><span>＋</span> 发布我的技能</button>
+        </div>
+
+        <div class="content-heading"><div><span class="section-kicker">FOR YOU</span><h2>为你匹配的技能</h2></div><p id="result-count">正在加载社区技能…</p></div>
+        <div class="skill-grid" id="skill-grid"></div>
+        <div class="empty-state hidden" id="empty-state">没有找到匹配的技能，试试换个关键词？</div>
+      </section>
+
+      <section class="view" id="exchanges-view">
+        <div class="page-heading"><div><span class="section-kicker">YOUR EXCHANGE DESK</span><h2>我的交换</h2><p>管理正在进行的学习，也看看对方的进度。</p></div><button class="primary-btn" id="new-exchange-btn">＋ 发起新交换</button></div>
+        <div class="exchange-tabs"><button class="active">全部 <span>2</span></button><button>进行中 <span>1</span></button><button>待回复 <span>1</span></button><button>已完成</button></div>
+        <div class="exchange-list" id="exchange-list"></div>
+      </section>
+
+      <section class="view" id="profile-view">
+        <div class="profile-banner"><div class="profile-avatar avatar-large">林</div><div><span class="section-kicker">MEMBER SINCE 2024</span><h2>林默</h2><p>上海 · 产品设计师 · 正在学习如何把故事讲得更好</p></div><button class="outline-btn">编辑资料</button></div>
+        <div class="profile-columns"><div class="profile-main"><div class="content-heading"><div><span class="section-kicker">MY SKILLS</span><h2>我的技能</h2></div><button class="text-btn" id="profile-publish-btn">＋ 添加技能</button></div><div class="profile-skill-list"><div><b>产品设计</b><span>可交换 · 进阶</span><i>设计思维　用户研究　Figma</i></div><div><b>城市摄影</b><span>可交换 · 熟练</span><i>街拍　构图　Lightroom</i></div></div></div><aside class="profile-stats"><div><strong>08</strong><span>完成交换</span></div><div><strong>4.9</strong><span>社区评分</span></div><div><strong>126</strong><span>获得感谢</span></div></aside></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+  <aside class="drawer" id="skill-drawer" aria-hidden="true"><button class="drawer-close" data-close>×</button><div id="drawer-content"></div></aside>
+
+  <div class="modal-backdrop" id="modal-backdrop"><div class="modal" role="dialog" aria-modal="true"><button class="drawer-close" data-close>×</button><span class="section-kicker">START A SWAP</span><h2 id="modal-title">发布你的技能</h2><p class="modal-intro">用你擅长的事，换一个新的开始。</p><form id="skill-form"><label>技能名称<input name="title" required placeholder="例如：手冲咖啡入门" /></label><label>技能分类<select name="category"><option>生活方式</option><option>创意设计</option><option>技术开发</option><option>语言表达</option></select></label><label>一句话介绍<textarea name="description" required placeholder="你愿意和对方分享什么？"></textarea></label><label>你希望换到什么？<input name="want" required placeholder="例如：基础日语会话" /></label><button class="primary-btn form-submit" type="submit">发布到技能市场 ↗</button></form></div></div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
